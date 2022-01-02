@@ -5,11 +5,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(29, 29, 36);
+        }
+        h1 {
+            color: burlywood;
+        }
+    </style>
 </head>
 <body>
-    <head id="head">Test</head>
-    <script>
-        console.log("Helo world!")
-    </script>
+    <h1 id="xd">Test</h1>
+    <script>      
+
+        // Function that retunrs ramdom result
+        function computerPlay() {
+            const ramdomNumber = Math.random() * 3;
+            if (ramdomNumber < 1) return "Rock";
+            else if (ramdomNumber < 2 && ramdomNumber >= 1 ) return "Paper";
+            else return "Scissors";
+        }
+
+        
+        // Function to play only a round
+        function playRound(playerSelection, computerSelection) {
+            // Variables to store parsed inputs in lower case and accept different words: uppercase & lowercase
+            const uSel_insensitiveCase = playerSelection.toLowerCase();
+            const cSel_insensitiveCase = computerSelection.toLowerCase();
+            // Results if players make differents decitions 
+            if ( uSel_insensitiveCase !== cSel_insensitiveCase){
+                if (uSel_insensitiveCase == 'scissors'){
+                    if (cSel_insensitiveCase == 'paper') {
+                        roundResult = "p";
+                        return "You win! scissors cuts paper";
+                    } else if (cSel_insensitiveCase == 'rock') {
+                        roundResult = "c";
+                        return "You lose :( rock breaks scissors";
+                    }
+                } else if (uSel_insensitiveCase == 'rock'){
+                    if (cSel_insensitiveCase == 'scissors') {
+                        roundResult = "p";
+                        return "You win! rock breaks scissors";
+                    } else if (cSel_insensitiveCase == 'paper') {
+                        roundResult = "c";
+                        return "You lose :( paper wraps rock";
+                    }
+                } else if (uSel_insensitiveCase == 'paper') {
+                    if (cSel_insensitiveCase == 'scissors') {
+                        roundResult = "c";
+                        return "You lose :( scissors cuts paper"
+                    } else if (cSel_insensitiveCase == 'rock') {
+                        roundResult = "p";
+                        return "You win! paper wraps rock";
+                    }
+                }
+            // Result if players choose the same one
+            } else if (uSel_insensitiveCase == cSel_insensitiveCase){
+                roundResult = "n";
+                return "Nobody wins, you two choose the same one";
+            }
+        }
+
+        // Result by round gererated by playRound() function
+        let roundResult = 0;
+
+        // Function to play 5 rounds
+        function game(){
+            let userFinalPoints = 0;
+            let compFinalPoints = 0;
+
+            while (userFinalPoints < 5 && compFinalPoints < 5) {
+                const computerSelection = computerPlay();
+                const playerSelection = prompt("Rock, Paper or Scissors");
+
+                console.log(playRound(playerSelection, computerSelection));
+
+                if (roundResult == "p") {
+                    userFinalPoints++;
+                } else if(roundResult == "c"){
+                    compFinalPoints++;
+                }
+            }
+
+            console.log(`***Results You: ${userFinalPoints}, Comp: ${compFinalPoints}***`)
+
+            if (userFinalPoints > compFinalPoints) {
+                return alert(`Congratulations you win!!! ${userFinalPoints} points`);
+            } else if (userFinalPoints < compFinalPoints) {
+                return alert(`You lose ${compFinalPoints} to ${userFinalPoints}`)
+            } else {
+                return alert('Nobody wins, you both are tied')
+            }
+        }
+
+
+
+        //test
+        game();
+        </script>
 </body>
 </html>
