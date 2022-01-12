@@ -2,9 +2,15 @@
 const rockButton = document.querySelector('.rock');
 const paperButton = document.querySelector('.paper');
 const scissorsButton = document.querySelector('.scissors');
+console.log(rockButton)
 
-rockButton.addEventListener('click', playRound)
+rockButton.addEventListener('click', (e) => playRound(e.target, computerPlay()));
+paperButton.addEventListener('click', (e) => playRound(e.target, computerPlay()))
+scissorsButton.addEventListener('click', (e) => playRound(e.target, computerPlay()))
 
+
+// Result by round gererated by playRound() function
+let roundResult = 0;
 
 // Function that retunrs ramdom result
 function computerPlay() {
@@ -14,12 +20,13 @@ function computerPlay() {
     else return "Scissors";
 }
 
-// Result by round gererated by playRound() function
-let roundResult = 0;
 // Function to play only a round
 function playRound(playerSelection, computerSelection) {
     // Variables to store parsed inputs in lower case and accept different words: uppercase & lowercase
-    const uSel_insensitiveCase = playerSelection;
+    const value = playerSelection.textContent;
+    console.log(value)
+
+    const uSel_insensitiveCase = value.toLowerCase();
     const cSel_insensitiveCase = computerSelection.toLowerCase();
     // Results if players make differents decitions 
     if ( uSel_insensitiveCase !== cSel_insensitiveCase){
@@ -81,5 +88,6 @@ function game() {
     }
 }
 
-//test
+/*test
 game();
+*/
