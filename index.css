@@ -1,7 +1,25 @@
 
 body {
-    background-color: rgb(29, 29, 36);
+    background-color: rgb(69, 69, 87);
 }
 h1 {
     color: burlywood;
+}
+
+button {
+    background-color: burlywood;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    margin: 3px;
+}
+
+.results {
+    background-color: azure;
+    font-size: 30px;
+    font-family: monospace;
+    display: flex;
+    padding: 40px;
+    margin-top: 30px;
 }
