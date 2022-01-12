@@ -1,74 +1,70 @@
-// Events
-const rockButton = document.querySelector('.rock');
-const paperButton = document.querySelector('.paper');
-const scissorsButton = document.querySelector('.scissors');
-console.log(rockButton)
 
-rockButton.addEventListener('click', (e) => playRound(e.target, computerPlay()));
-paperButton.addEventListener('click', (e) => playRound(e.target, computerPlay()))
-scissorsButton.addEventListener('click', (e) => playRound(e.target, computerPlay()))
+let buttons = document.querySelectorAll('button');
+buttons.forEach( button => button.addEventListener('click', (e) => playRound(e.target, computerPlay())))
 
-
-// Result by round gererated by playRound() function
+// Results
+let computerPoints;
+let userPoints;
 let roundResult = 0;
 
 // Function that retunrs ramdom result
 function computerPlay() {
     const ramdomNumber = Math.random() * 3;
     if (ramdomNumber < 1) return "Rock";
-    else if (ramdomNumber < 2 && ramdomNumber >= 1 ) return "Paper";
+    else if (ramdomNumber < 2 && ramdomNumber >= 1) return "Paper";
     else return "Scissors";
 }
+let computerChoice = document.querySelector('.computerDesition');
+let playerChoice = document.querySelector('.playerDesition');
 
 // Function to play only a round
 function playRound(playerSelection, computerSelection) {
     // Variables to store parsed inputs in lower case and accept different words: uppercase & lowercase
-    const value = playerSelection.textContent;
-    console.log(value)
+    const userChoice = playerSelection.textContent.toLowerCase();
+    const compChoice = computerSelection.toLowerCase();
 
-    const uSel_insensitiveCase = value.toLowerCase();
-    const cSel_insensitiveCase = computerSelection.toLowerCase();
+    computerChoice.textContent = compChoice;
+    playerChoice.textContent = userChoice;
+    
     // Results if players make differents decitions 
-    if ( uSel_insensitiveCase !== cSel_insensitiveCase){
-        if (uSel_insensitiveCase == 'scissors') {
-            if (cSel_insensitiveCase == 'paper') {
+    if (userChoice !== compChoice) {
+        if (userChoice == 'scissors') {
+            if (compChoice == 'paper') {
                 roundResult = "p";
                 return "You win! scissors cuts paper";
-            } else if (cSel_insensitiveCase == 'rock') {
+            } else if (compChoice == 'rock') {
                 roundResult = "c";
                 return "You lose :( rock breaks scissors";
             }
-        } else if (uSel_insensitiveCase == 'rock'){
-            if (cSel_insensitiveCase == 'scissors') {
+        } else if (userChoice == 'rock') {
+            if (compChoice == 'scissors') {
                 roundResult = "p";
                 return "You win! rock breaks scissors";
-            } else if (cSel_insensitiveCase == 'paper') {
+            } else if (compChoice == 'paper') {
                 roundResult = "c";
                 return "You lose :( paper wraps rock";
             }
-        } else if (uSel_insensitiveCase == 'paper') {
-            if (cSel_insensitiveCase == 'scissors') {
+        } else if (userChoice == 'paper') {
+            if (compChoice == 'scissors') {
                 roundResult = "c";
                 return "You lose :( scissors cuts paper"
-            } else if (cSel_insensitiveCase == 'rock') {
+            } else if (compChoice == 'rock') {
                 roundResult = "p";
                 return "You win! paper wraps rock";
             }
         }
-    // Result if players choose the same one
-    } else if (uSel_insensitiveCase == cSel_insensitiveCase){
+        // Result if players choose the same one
+    } else if (userChoice == compChoice) {
         roundResult = "n";
         return "Nobody wins, you two choose the same one";
     }
 }
 
+
+
 // Function to play 5 rounds
 function game() {
     let userFinalPoints = 0; compFinalPoints = 0;
-
-    const computerSelection = computerPlay();
-    const playerSelection = prompt();
-
     playRound(playerSelection, computerSelection);
 
     if (roundResult == "p") {
@@ -87,7 +83,3 @@ function game() {
         return alert('Nobody wins, you both are tied')
     }
 }
-
-/*test
-game();
-*/
