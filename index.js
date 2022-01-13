@@ -1,85 +1,127 @@
+let computerPoints = document.querySelector('.computerPoints');
+let userPoints = document.querySelector('.userPoints');
+let roundResult = document.querySelector('.roundResult');
+let finalWinner = document.querySelector('.winner');
+let computerChoice = document.querySelector('.computerDesition');
+let playerChoice = document.querySelector('.playerDesition');
 
+const userImageSelection = document.querySelector('.userImageSelection');
+const computerImageSelection = document.querySelector('.computerImageSelection');
+
+// Event listeners to start the game
 let buttons = document.querySelectorAll('button');
-buttons.forEach( button => button.addEventListener('click', (e) => playRound(e.target, computerPlay())))
+for ( let button of buttons ) {
+    button.addEventListener('click', (e) => playRound(e.target, computerPlay()));
+    button.addEventListener('click', () => defineWinner(userPoints, computerPoints))
+}
 
-// Results
-let computerPoints;
-let userPoints;
-let roundResult = 0;
-
-// Function that retunrs ramdom result
+// Computer Selection
 function computerPlay() {
     const ramdomNumber = Math.random() * 3;
     if (ramdomNumber < 1) return "Rock";
     else if (ramdomNumber < 2 && ramdomNumber >= 1) return "Paper";
     else return "Scissors";
 }
-let computerChoice = document.querySelector('.computerDesition');
-let playerChoice = document.querySelector('.playerDesition');
 
-// Function to play only a round
+// Function to play a round
 function playRound(playerSelection, computerSelection) {
-    // Variables to store parsed inputs in lower case and accept different words: uppercase & lowercase
+
     const userChoice = playerSelection.textContent.toLowerCase();
     const compChoice = computerSelection.toLowerCase();
-
     computerChoice.textContent = compChoice;
     playerChoice.textContent = userChoice;
+
+    const rockRoute = './images/rock.png';
+    const paperRoute = './images/paper.png';
+    const scissorsRoute =  './images/scissors.png'; 
     
-    // Results if players make differents decitions 
     if (userChoice !== compChoice) {
         if (userChoice == 'scissors') {
+
+            userImageSelection.src = scissorsRoute;
             if (compChoice == 'paper') {
-                roundResult = "p";
-                return "You win! scissors cuts paper";
+                userPoints.textContent ++;
+                roundResult.textContent = "You win! scissors cuts paper";
+                computerImageSelection.src = paperRoute;
+                return
             } else if (compChoice == 'rock') {
-                roundResult = "c";
-                return "You lose :( rock breaks scissors";
+                roundResult.textContent = "You lose :( rock breaks scissors";
+                computerPoints.textContent++;
+                computerImageSelection.src = rockRoute;
+                return
             }
         } else if (userChoice == 'rock') {
+
+            userImageSelection.src = rockRoute;
             if (compChoice == 'scissors') {
-                roundResult = "p";
-                return "You win! rock breaks scissors";
+                userPoints.textContent++;
+                roundResult.textContent = "You win! rock breaks scissors";
+                computerImageSelection.src = scissorsRoute;
+                return
             } else if (compChoice == 'paper') {
-                roundResult = "c";
-                return "You lose :( paper wraps rock";
+                computerPoints.textContent++;
+                roundResult.textContent =  "You lose :( paper wraps rock";
+                computerImageSelection.src = paperRoute;
+                return
             }
         } else if (userChoice == 'paper') {
+
+            userImageSelection.src = paperRoute;
             if (compChoice == 'scissors') {
-                roundResult = "c";
-                return "You lose :( scissors cuts paper"
+                computerPoints.textContent++;
+                roundResult.textContent = "You lose :( scissors cuts paper";
+                computerImageSelection.src = scissorsRoute;
+                return
             } else if (compChoice == 'rock') {
-                roundResult = "p";
-                return "You win! paper wraps rock";
+                userPoints.textContent++;
+                roundResult.textContent = "You win! paper wraps rock";
+                computerImageSelection.src = rockRoute;
+                return
             }
         }
-        // Result if players choose the same one
     } else if (userChoice == compChoice) {
-        roundResult = "n";
-        return "Nobody wins, you two choose the same one";
+        if (userChoice === 'rock'){
+            userImageSelection.src = rockRoute;
+            computerImageSelection.src = rockRoute;
+            roundResult.textContent = "Nobody wins, you two choose the same one";;
+            return 
+        } else if(userChoice === 'paper'){
+            userImageSelection.src = paperRoute;
+            computerImageSelection.src = paperRoute;
+            roundResult.textContent = "Nobody wins, you two choose the same one";;
+            return
+        } else if(userChoice === 'scissors') {
+            userImageSelection.src = scissorsRoute;
+            computerImageSelection.src = scissorsRoute;
+            roundResult.textContent = "Nobody wins, you two choose the same one";;
+            return 
+        }
     }
 }
 
-
-
-// Function to play 5 rounds
-function game() {
-    let userFinalPoints = 0; compFinalPoints = 0;
-    playRound(playerSelection, computerSelection);
-
-    if (roundResult == "p") {
-        userFinalPoints++;
-    } else if(roundResult == "c"){
-        compFinalPoints++;
+// Function to define winner;
+function defineWinner(userPoints, computerPoints) {
+    const userP = parseInt(userPoints.textContent, 10);
+    const compP = parseInt(computerPoints.textContent, 10);
+    console.log(userP, compP);
+    if ( userP > compP && userP > 4){
+        finalWinner.textContent = 'You Wins!!'
+        setTimeout(()=> restart(), 5000);
+    } else if (compP > userP && compP > 4) {
+        finalWinner.textContent = 'You lose'
+        setTimeout(()=> restart(), 5000);
     }
+    return 
+}
 
-    console.log(`***Results You: ${userFinalPoints}, Comp: ${compFinalPoints}***`)
-
-    if (userFinalPoints > compFinalPoints) {
-        return alert(`Congratulations you win!!! ${userFinalPoints} points`);
-    } else if (userFinalPoints < compFinalPoints) {
-        return alert(`You lose ${compFinalPoints} to ${userFinalPoints}`)
-    } else {
-        return alert('Nobody wins, you both are tied')
-    }
+// Function to restart the Game
+function restart() {
+    computerPoints.textContent = 0;
+    userPoints.textContent = 0;
+    roundResult.textContent = '';
+    computerChoice.textContent = '';
+    playerChoice.textContent = '';
+    finalWinner.textContent = '';
+    userImageSelection.src = "";
+    computerImageSelection.src = "";
 }

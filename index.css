@@ -1,18 +1,31 @@
+* {
+/*     border: solid black;
+ */    padding: 3px;
+    margin: 3px;
+    border-radius: 4px;
+}
 
 body {
-    background-color: rgb(69, 69, 87);
+    background-color: rgba(4, 10, 39, 0.76);
 }
+
 h1 {
-    color: burlywood;
+    color: rgb(228, 222, 174);
+    text-align: center;
 }
 
 button {
     background-color: burlywood;
-    padding: 10px;
     font-weight: bold;
     color: white;
-    border-radius: 6px;
-    margin: 3px;
+    border-radius: 10%;
+    width: 110px;
+    height: 50px;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .results {
@@ -23,7 +36,31 @@ button {
     font-size: 30px;
     font-family: monospace;
     display: flex;
-    padding: 40px;
-    margin: 30px;
 }
 
+.roundResult {
+    font-style: italic;
+    color: rgba(10, 117, 131, 0.582);
+    font-size: 22px;
+}
+
+.userImageSelection, .computerImageSelection {
+    height: auto;
+    max-width: 300px;
+}
+
+.selectionsTitle {
+    background-color: rgb(212, 126, 126);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.selections {
+    display: flex;
+}
+
+h2 {
+    justify-content: center;
+}
