@@ -32,12 +32,11 @@ button {
     font-family: monospace;
     font-weight: bold;
     color: white;
-    border-radius: 10%;
     width: 110px;
     height: 50px;
     transition: 0.4s;
-/*     overflow: hidden;
- */    cursor: pointer;
+    overflow: hidden;
+    cursor: pointer;
 }
 button:hover {
     background-color: rgba(255, 187, 142, 0.527);
@@ -47,16 +46,24 @@ button:hover {
 button:after {
     position: absolute;
     content: "";
-    background: rgb(224, 188, 224);    
+    background: rgb(244, 247, 203);    
     opacity: 0;
     transition: all 0.8s;
-    padding: 100%;
+    padding-right: 80%;
+    padding-left: 90%;
+    padding-bottom: 130%;
+    margin-top: -50%;
+    margin-bottom: -190%;
+    margin-right: 10%;
+    margin-left: -130%;
+    border-radius: 60%;
 }
 button:active:after{
-    opacity: 1;
+    opacity: 0.8;
     transition: 0s;
-    padding: 20px;
+    padding: 0;
     margin: 0;
+    border-radius: 0;
 }
 .buttons {
     display: flex;
