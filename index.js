@@ -45,7 +45,7 @@ function playRound(playerSelection, computerSelection) {
                 computerImageSelection.src = paperRoute;
                 return
             } else if (compChoice == 'rock') {
-                roundResult.textContent = "You lose :( rock breaks scissors";
+                roundResult.textContent = "Rock breaks scissors :(";
                 computerPoints.textContent++;
                 computerImageSelection.src = rockRoute;
                 return
@@ -60,7 +60,7 @@ function playRound(playerSelection, computerSelection) {
                 return
             } else if (compChoice == 'paper') {
                 computerPoints.textContent++;
-                roundResult.textContent =  "You lose :( paper wraps rock";
+                roundResult.textContent =  "Paper wraps rock :(";
                 computerImageSelection.src = paperRoute;
                 return
             }
@@ -69,7 +69,7 @@ function playRound(playerSelection, computerSelection) {
             userImageSelection.src = paperRoute;
             if (compChoice == 'scissors') {
                 computerPoints.textContent++;
-                roundResult.textContent = "You lose :( scissors cuts paper";
+                roundResult.textContent = "Scissors cuts paper :(";
                 computerImageSelection.src = scissorsRoute;
                 return
             } else if (compChoice == 'rock') {
@@ -103,9 +103,8 @@ function playRound(playerSelection, computerSelection) {
 function defineWinner(userPoints, computerPoints) {
     const userP = parseInt(userPoints.textContent, 10);
     const compP = parseInt(computerPoints.textContent, 10);
-    console.log(userP, compP);
     if ( userP > compP && userP > 4){
-        finalWinner.textContent = 'You Wins!!'
+        finalWinner.textContent = 'You Win!!'
         setTimeout(()=> restart(), 5000);
     } else if (compP > userP && compP > 4) {
         finalWinner.textContent = 'You lose'

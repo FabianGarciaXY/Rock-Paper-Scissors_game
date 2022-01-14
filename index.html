@@ -10,34 +10,39 @@
 </head>
 <body>
 
-    <h1> Rock Paper Scissors </h1>
-
-    <div class="buttons">
-        <button class="rock">ROCK</button>
-        <button class="paper">PAPER</button>
-        <button class="scissors">SCISSORS</button>
-    </div>
-    
     <div class="results">
+        <div class="title"><h1> Rock Paper Scissors </h1></div>
+
+        <div class="buttons">
+            <button class="rock">ROCK</button>
+            <button class="paper">PAPER</button>
+            <button class="scissors">SCISSORS</button>
+        </div>
+
         <div class='selectionsTitle'>
             <h2>Play!</h2>
+            <div class="points">
+                <p>You: <span class="userPoints">0</span></p>
+                <p>Computer: <span class="computerPoints">0</span></p>
+            </div>
             <div class="selections">
-                <div>You: 
-                    <span class='playerDesition' style="font-weight: bold;"></span>
+                <div class="players-selections">
                     <div class="imageContainer"><img src="" class="userImageSelection"></div>
+                    <div class='playerDesition' style="font-weight: bold;"></div>
                 </div>
-                <div>Computer: 
-                    <span class='computerDesition' style='font-weight: bold;'></span>
+                <div class="players-selections">
                     <div class="imageContainer"><img src="" class='computerImageSelection'></div>
+                    <div class='computerDesition' style='font-weight: bold;'></div>
                 </div> 
             </div>
         </div>
         <div class='result'> 
             <span class="roundResult"></span><br><br>
-            User: <span class="userPoints">0</span><br>
-            Computer: <span class="computerPoints">0</span>
         </div>
-        <div>Winner: <span class="winner"></span></div>
+        <div>Result: <span class="winner"></span></div>
     </div>
+    <footer>
+        By <a>@Fabian Gahezz</a>
+    </footer>
 </body>
 </html>
